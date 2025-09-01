@@ -106,93 +106,14 @@ export default function ContactPage() {
           </div>
         </div>
       </header>
-
-      {/* Hero Section */}
+      {/* Start Your Project (Now First Section) */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="mb-6 bg-green-500/20 text-green-300 border-green-500/30 text-lg px-4 py-2">
-            Get In Touch
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Let's Build Something
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Amazing Together
-            </span>
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-            Ready to transform your ideas into reality? We're here to help you create exceptional digital experiences 
-            that drive results and exceed expectations.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Methods */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card 
-              className="bg-slate-800 border-slate-700 hover:border-green-500/50 transition-all duration-300 cursor-pointer transform hover:scale-105"
-              onClick={handleWhatsAppClick}
-            >
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-8 h-8 text-green-400" />
-                </div>
-                <CardTitle className="text-white">WhatsApp</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Get instant response via WhatsApp
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-green-400 font-medium mb-2">+27 63 199 5124</div>
-                <div className="text-slate-400 text-sm">Available 9 AM - 6 PM SAST</div>
-              </CardContent>
-            </Card>
-
-            <Card 
-              className="bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-all duration-300 cursor-pointer transform hover:scale-105"
-              onClick={handleEmailClick}
-            >
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-blue-400" />
-                </div>
-                <CardTitle className="text-white">Email</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Send us a detailed message
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-blue-400 font-medium mb-2">alex@southflow.co.za</div>
-                <div className="text-slate-400 text-sm">Response within 2 hours</div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-800 border-slate-700 hover:border-purple-500/50 transition-all duration-300">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MapPin className="w-8 h-8 text-purple-400" />
-                </div>
-                <CardTitle className="text-white">Location</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Based in South Africa
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-purple-400 font-medium mb-2">South Africa</div>
-                <div className="text-slate-400 text-sm">Serving clients globally</div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form */}
-      <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Start Your Project</h2>
-            <p className="text-lg text-slate-300">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Start Your Project
+            </h1>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Fill out the form below and we'll get back to you with a detailed proposal
             </p>
           </div>
@@ -322,6 +243,68 @@ export default function ContactPage() {
           </Card>
         </div>
       </section>
+
+      {/* Contact Methods */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card 
+              className="bg-slate-800 border-slate-700 hover:border-green-500/50 transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={handleWhatsAppClick}
+            >
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="w-8 h-8 text-green-400" />
+                </div>
+                <CardTitle className="text-white">WhatsApp</CardTitle>
+                <CardDescription className="text-slate-300">
+                  Get instant response via WhatsApp
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-green-400 font-medium mb-2">+27 63 199 5124</div>
+                <div className="text-slate-400 text-sm">Available 9 AM - 6 PM SAST</div>
+              </CardContent>
+            </Card>
+
+            <Card 
+              className="bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={handleEmailClick}
+            >
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-blue-400" />
+                </div>
+                <CardTitle className="text-white">Email</CardTitle>
+                <CardDescription className="text-slate-300">
+                  Send us a detailed message
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-blue-400 font-medium mb-2">alex@southflow.co.za</div>
+                <div className="text-slate-400 text-sm">Response within 2 hours</div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800 border-slate-700 hover:border-purple-500/50 transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-purple-400" />
+                </div>
+                <CardTitle className="text-white">Location</CardTitle>
+                <CardDescription className="text-slate-300">
+                  Based in South Africa
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-purple-400 font-medium mb-2">South Africa</div>
+                <div className="text-slate-400 text-sm">Serving clients globally</div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
 
       {/* FAQ Section */}
       <section className="py-16 bg-slate-800/50">
