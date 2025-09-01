@@ -74,7 +74,7 @@ export default function HomePage() {
               We craft premium ecommerce shops, property websites, and mobile applications using Next.js and modern technologies — securing your digital assets with expert vulnerability testing.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4 w-full sm:w-auto shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
+              <Button data-lead data-lead-source="hero_primary_cta" size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4 w-full sm:w-auto shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -481,7 +481,7 @@ export default function HomePage() {
                     <span>3 months support</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700">
+                <Button data-lead data-lead-source="pricing" data-lead-plan="small_business" data-lead-value="4999" className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700">
                   Get Started
                 </Button>
               </CardContent>
@@ -533,7 +533,7 @@ export default function HomePage() {
                     <span>6 months priority support</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+                <Button data-lead data-lead-source="pricing" data-lead-plan="growing_business" data-lead-value="8999" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
                   Get Started
                 </Button>
               </CardContent>
@@ -586,7 +586,7 @@ export default function HomePage() {
                     <span>12 months support</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700">
+                <Button data-lead data-lead-source="pricing" data-lead-plan="complete_solution" data-lead-value="14999" className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700">
                   Get Started
                 </Button>
               </CardContent>

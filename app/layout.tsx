@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
 import { PixelRouteListener } from '@/components/pixel-route-listener'
+import { LeadTracker } from '@/components/lead-tracker'
 
 export const metadata: Metadata = {
   title: 'Majestic Dev',
@@ -42,7 +43,8 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
       </head>
     <body>
-      <PixelRouteListener />
+          <PixelRouteListener />
+          <LeadTracker />
       {children}
           {/* Floating WhatsApp Button */}
           <a

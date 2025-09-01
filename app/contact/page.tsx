@@ -247,6 +247,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <Button
+                    data-lead data-lead-source="contact_form_submit" data-lead-plan="custom_quote"
                     type="submit"
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg py-6 flex items-center justify-center gap-2"
                   >
@@ -258,6 +259,7 @@ export default function ContactPage() {
                     <div className="text-slate-400 text-sm mb-4">Or get in touch directly:</div>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Button
+                        data-lead data-lead-source="contact_whatsapp"
                         type="button"
                         onClick={handleWhatsAppClick}
                         className="bg-green-600 hover:bg-green-700 flex items-center gap-2"
@@ -266,6 +268,7 @@ export default function ContactPage() {
                         WhatsApp
                       </Button>
                       <Button
+                        data-lead data-lead-source="contact_schedule_call"
                         type="button"
                         onClick={handleScheduleClick}
                         variant="outline"
