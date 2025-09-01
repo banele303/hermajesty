@@ -21,284 +21,86 @@ import { Progress } from "@/components/ui/progress"
 
 export default function HomePage() {
   return (
-  <div className="min-h-screen bg-gradient-to-br from-white via-white to-white">
-      {/* Navigation */}
-  <nav className="border-b border-slate-200/60 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-slate-900 font-bold text-sm">HMS</span>
+    <div className="min-h-screen bg-gradient-to-br from-white via-white to-white">
+      <header className="relative min-h-[70vh] flex flex-col overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/hero-bg.jpg" alt="Digital technology background" fill priority quality={90} className="object-cover object-center" />
+          <div className="absolute inset-0 bg-slate-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/40 to-slate-900/80" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-30 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        </div>
+        {/* Top nav */}
+        <div className="relative z-20 border-b border-white/10 bg-slate-900/30 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">HMS</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-white font-bold text-lg leading-tight">HER MAJESTY</span>
+                  <span className="text-blue-400 font-medium text-sm leading-tight">SOUTHFLOW</span>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-slate-900 font-bold text-lg leading-tight">HER MAJESTY</span>
-                <span className="text-blue-600 font-medium text-sm leading-tight">SOUTHFLOW</span>
+              <nav className="hidden lg:flex items-center space-x-8">
+                <Link href="#about" className="text-slate-300 hover:text-white transition-colors">About</Link>
+                <Link href="#services" className="text-slate-300 hover:text-white transition-colors">Services</Link>
+                <Link href="/portfolio" className="text-slate-300 hover:text-white transition-colors">Portfolio</Link>
+                <Link href="#process" className="text-slate-300 hover:text-white transition-colors">Process</Link>
+                <Link href="#pricing" className="text-slate-300 hover:text-white transition-colors">Pricing</Link>
+                <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">Contact</Link>
+              </nav>
+              <div className="hidden sm:block">
+                <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">Get Started</Button>
               </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <Link href="#about" className="text-slate-600 hover:text-slate-900 transition-colors">
-                About
-              </Link>
-              <Link href="#services" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Services
-              </Link>
-              <Link href="/portfolio" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Portfolio
-              </Link>
-              <Link href="#nextjs" className="text-slate-300 hover:text-white transition-colors">
-                Next.js
-              </Link>
-              <Link href="#process" className="text-slate-300 hover:text-white transition-colors">
-                Process
-              </Link>
-              <Link href="#pricing" className="text-slate-300 hover:text-white transition-colors">
-                Pricing
-              </Link>
-              <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">
-                Contact
-              </Link>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <Button variant="ghost" size="sm" className="text-white">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden sm:block">
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-                Get Started
-              </Button>
+              <div className="lg:hidden">
+                <Button variant="ghost" size="sm" className="text-white">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative py-16 lg:py-32 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Digital technology background"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-          />
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-slate-900/80"></div>
-        </div>
-
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900/80 z-10"></div>
-
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-30 z-10"></div>
-
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
-          <div className="text-center">
-            <Badge className="mb-6 bg-slate-800/80 backdrop-blur-sm text-slate-300 border-slate-700/50 text-sm sm:text-base">
-              🇿🇦 Based in South Africa • 5+ Years Experience
-            </Badge>
+        {/* Hero content */}
+        <div className="relative z-20 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+          <div className="text-center max-w-5xl">
+            <Badge className="mb-6 bg-slate-800/80 backdrop-blur-sm text-slate-300 border-slate-700/50 text-sm sm:text-base">🇿🇦 Based in South Africa • 5+ Years Experience</Badge>
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
               Build High-End
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent block sm:inline">
-                {" "}
-                Digital Experiences
-              </span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent block sm:inline"> Digital Experiences</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed px-4 drop-shadow-lg">
-              We specialize in crafting premium ecommerce shops, property websites, and mobile applications using
-              Next.js and modern technologies. Plus, we secure your digital assets with expert vulnerability testing and
-              bug bounty expertise.
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed px-2 drop-shadow-lg">
+              We craft premium ecommerce shops, property websites, and mobile applications using Next.js and modern technologies — securing your digital assets with expert vulnerability testing.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 px-4">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4 w-full sm:w-auto shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
-              >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4 w-full sm:w-auto shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-slate-500/50 bg-slate-800/30 backdrop-blur-sm text-slate-200 hover:bg-slate-700/50 text-lg px-8 py-4 w-full sm:w-auto shadow-xl"
-              >
+              <Button size="lg" variant="outline" className="border-slate-500/50 bg-slate-800/30 backdrop-blur-sm text-slate-200 hover:bg-slate-700/50 text-lg px-8 py-4 w-full sm:w-auto shadow-xl">
                 View Our Work
               </Button>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-slate-300 mb-16 px-4">
-              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2">
-                <Code className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
-                <span className="text-sm sm:text-base">Next.js Expert</span>
-              </div>
-              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2">
-                <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-400" />
-                <span className="text-sm sm:text-base">Security Testing</span>
-              </div>
-              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2">
-                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400" />
-                <span className="text-sm sm:text-base">High Performance</span>
-              </div>
-              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2">
-                <Award className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400" />
-                <span className="text-sm sm:text-base">Bug Bounty Expert</span>
-              </div>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-slate-300 mb-8">
+              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2"><Code className="h-4 w-4 text-blue-400" /><span className="text-sm sm:text-base">Next.js Expert</span></div>
+              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2"><Shield className="h-4 w-4 text-green-400" /><span className="text-sm sm:text-base">Security Testing</span></div>
+              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2"><Zap className="h-4 w-4 text-yellow-400" /><span className="text-sm sm:text-base">High Performance</span></div>
+              <div className="flex items-center gap-2 bg-slate-800/30 backdrop-blur-sm rounded-full px-4 py-2"><Award className="h-4 w-4 text-purple-400" /><span className="text-sm sm:text-base">Bug Bounty Expert</span></div>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
-              <div className="text-center p-4 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">50+</div>
-                <div className="text-slate-300 text-sm sm:text-base">Projects Delivered</div>
-              </div>
-              <div className="text-center p-4 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">99%</div>
-                <div className="text-slate-300 text-sm sm:text-base">Client Satisfaction</div>
-              </div>
-              <div className="text-center p-4 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">24/7</div>
-                <div className="text-slate-300 text-sm sm:text-base">Support Available</div>
-              </div>
-              <div className="text-center p-4 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">5+</div>
-                <div className="text-slate-300 text-sm sm:text-base">Years Experience</div>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
+              <div className="text-center p-3 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl"><div className="text-xl sm:text-2xl font-bold text-white mb-1">50+</div><div className="text-slate-300 text-xs sm:text-sm">Projects</div></div>
+              <div className="text-center p-3 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl"><div className="text-xl sm:text-2xl font-bold text-white mb-1">99%</div><div className="text-slate-300 text-xs sm:text-sm">Satisfaction</div></div>
+              <div className="text-center p-3 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl"><div className="text-xl sm:text-2xl font-bold text-white mb-1">24/7</div><div className="text-slate-300 text-xs sm:text-sm">Support</div></div>
+              <div className="text-center p-3 bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 shadow-xl"><div className="text-xl sm:text-2xl font-bold text-white mb-1">5+</div><div className="text-slate-300 text-xs sm:text-sm">Years</div></div>
             </div>
           </div>
         </div>
-
-        {/* Floating elements for visual interest */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-green-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 lg:py-20 bg-slate-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">About Alex & SouthFlow</Badge>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
-                Crafting Digital Excellence from South Africa
-              </h2>
-              <p className="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed">
-                Hi, I'm Alex, a passionate software engineer based in South Africa with over 5 years of experience
-                building high-end digital solutions. I specialize in Next.js development and have extensive knowledge in
-                bug bounty hunting, making me uniquely positioned to build secure, performant applications.
-              </p>
-              <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed">
-                At HMS HER MAJESTY SouthFlow, we don't just build websites – we craft digital experiences that drive
-                business growth. Our expertise spans from complex ecommerce platforms to sophisticated property websites
-                and mobile applications, all built with cutting-edge technologies.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Code className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Full-Stack Development</div>
-                    <div className="text-slate-400 text-sm">Next.js, TypeScript, Prisma</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
-                  <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-5 w-5 text-green-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Security Expert</div>
-                    <div className="text-slate-400 text-sm">Bug Bounty, Penetration Testing</div>
-                  </div>
-                </div>
-              </div>
-
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full sm:w-auto">
-                Learn More About Our Journey
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="relative">
-              <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-2xl p-6 sm:p-8">
-                <h3 className="text-xl font-bold text-white mb-6">Our Technology Stack</h3>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-blue-500/20 rounded flex items-center justify-center">
-                          <span className="text-blue-400 text-xs">⚛️</span>
-                        </div>
-                        <span className="text-slate-300">Next.js & React</span>
-                      </div>
-                      <span className="text-slate-400">95%</span>
-                    </div>
-                    <Progress value={95} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-blue-600/20 rounded flex items-center justify-center">
-                          <span className="text-blue-500 text-xs">TS</span>
-                        </div>
-                        <span className="text-slate-300">TypeScript</span>
-                      </div>
-                      <span className="text-slate-400">90%</span>
-                    </div>
-                    <Progress value={90} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-purple-500/20 rounded flex items-center justify-center">
-                          <Database className="h-3 w-3 text-purple-400" />
-                        </div>
-                        <span className="text-slate-300">Database (Prisma/SQL)</span>
-                      </div>
-                      <span className="text-slate-400">88%</span>
-                    </div>
-                    <Progress value={88} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-green-500/20 rounded flex items-center justify-center">
-                          <Shield className="h-3 w-3 text-green-400" />
-                        </div>
-                        <span className="text-slate-300">Security Testing</span>
-                      </div>
-                      <span className="text-slate-400">92%</span>
-                    </div>
-                    <Progress value={92} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-orange-500/20 rounded flex items-center justify-center">
-                          <Smartphone className="h-3 w-3 text-orange-400" />
-                        </div>
-                        <span className="text-slate-300">Mobile Development</span>
-                      </div>
-                      <span className="text-slate-400">85%</span>
-                    </div>
-                    <Progress value={85} className="h-2" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* Decorative blobs */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-green-500/10 rounded-full blur-xl animate-pulse delay-500" />
+      </header>
 
       {/* Services Section */}
       <section id="services" className="py-16 lg:py-20 bg-slate-800/50">
