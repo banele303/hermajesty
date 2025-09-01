@@ -29,6 +29,68 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useEffect, useState } from "react"
 
+// Simple intersection observer hook for scroll reveal
+function useReveal(threshold = 0.15) {
+  const [visible, setVisible] = useState(false)
+  const ref = (node: HTMLElement | null) => {
+    if (!node) return
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => e.isIntersecting && (setVisible(true), obs.disconnect())),
+      { threshold }
+    )
+    obs.observe(node)
+  }
+  return { ref, visible }
+}
+
+// Reusable project card with overlay & gradients
+interface ProjectCardProps {
+  title: string
+  description: string
+  year?: string
+  duration?: string
+  categoryBadges?: string[]
+  statusBadge?: string
+  icon: React.ReactNode
+  accent?: string // tailwind color accent e.g. 'blue', 'purple'
+}
+
+function ProjectCard({ title, description, year, duration, categoryBadges = [], statusBadge, icon, accent = 'blue' }: ProjectCardProps) {
+  const { ref, visible } = useReveal()
+  return (
+    <div
+      ref={ref as any}
+      className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} `}
+    >
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-50 via-transparent to-purple-50" />
+      <div className="absolute -top-1 -left-1 h-32 w-32 rounded-full bg-gradient-to-br from-blue-200/30 to-purple-200/10 blur-2xl pointer-events-none" />
+      <div className="relative p-5 flex flex-col h-full">
+        <div className="flex items-start justify-between mb-4">
+          <div className={`h-14 w-14 rounded-xl grid place-content-center bg-gradient-to-br from-${accent}-500/10 to-${accent}-600/10 border border-${accent}-200/40 text-${accent}-600`}>{icon}</div>
+          {statusBadge && <span className="text-[10px] uppercase tracking-wide font-medium px-2 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">{statusBadge}</span>}
+        </div>
+        <h4 className="font-semibold text-slate-900 text-lg mb-2 tracking-tight leading-snug">{title}</h4>
+        <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {categoryBadges.map(b => (
+            <span key={b} className="text-[11px] font-medium rounded-full bg-white border border-slate-200 px-2.5 py-1 shadow-sm">{b}</span>
+          ))}
+        </div>
+        {(year || duration) && (
+          <div className="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-200 pt-3 mt-auto">
+            {duration && <span>Duration: {duration}</span>}
+            {year && <span>{year}</span>}
+          </div>
+        )}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-tr from-slate-900/5 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <ArrowRight className="h-4 w-4 text-slate-400" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function RotatingWord() {
   const words = ["Ecommerce", "Dashboards", "Mobile Apps", "Security"]
   const [index, setIndex] = useState(0)
@@ -177,19 +239,13 @@ export default function PortfolioPage() {
   <section id="work" className="py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="ecommerce" className="w-full">
-    <TabsList className="grid w-full grid-cols-4 bg-white border border-slate-200 rounded-xl shadow-sm">
-      <TabsTrigger value="ecommerce" className="data-[state=active]:bg-slate-100 data-[state=active]:text-slate-900 text-slate-600">
-                Ecommerce
-              </TabsTrigger>
-      <TabsTrigger value="dashboards" className="data-[state=active]:bg-slate-100 data-[state=active]:text-slate-900 text-slate-600">
-                Dashboards
-              </TabsTrigger>
-      <TabsTrigger value="mobile" className="data-[state=active]:bg-slate-100 data-[state=active]:text-slate-900 text-slate-600">
-                Mobile Apps
-              </TabsTrigger>
-      <TabsTrigger value="security" className="data-[state=active]:bg-slate-100 data-[state=active]:text-slate-900 text-slate-600">
-                Security
-              </TabsTrigger>
+    <TabsList className="relative grid w-full grid-cols-2 sm:grid-cols-4 bg-white/60 backdrop-blur-md border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)] bg-gradient-to-r from-blue-100/40 via-purple-100/30 to-fuchsia-100/40" />
+      {['ecommerce','dashboards','mobile','security'].map(val => (
+        <TabsTrigger key={val} value={val} className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500/10 data-[state=active]:to-purple-500/10 data-[state=active]:text-slate-900 text-slate-600 relative after:absolute after:inset-0 after:rounded-xl data-[state=active]:after:shadow-[0_0_0_1px_rgba(0,0,0,0.04)] transition-all">
+          <span className="capitalize tracking-wide font-medium text-sm">{val.replace('-',' ')}</span>
+        </TabsTrigger>
+      ))}
             </TabsList>
 
             {/* Ecommerce Projects */}
@@ -288,80 +344,36 @@ export default function PortfolioPage() {
 
                 {/* Additional Ecommerce Projects */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                  <Card className="bg-white border border-slate-200 hover:border-blue-400/50 transition-all duration-300 group shadow-sm">
-                    <CardHeader>
-                      <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-white rounded-lg mb-4 flex items-center justify-center border border-slate-200">
-                        <Globe className="h-16 w-16 text-slate-400 group-hover:text-blue-500 transition-colors" />
-                      </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge className="bg-orange-50 text-orange-700 border border-orange-200">Fashion</Badge>
-                        <Badge className="bg-green-50 text-green-700 border border-green-200">Completed</Badge>
-                      </div>
-                      <CardTitle className="text-slate-900">StyleHub Fashion Store</CardTitle>
-                      <CardDescription className="text-slate-600">
-                        Modern fashion ecommerce with AR try-on features and social shopping integration.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex justify-between text-sm text-slate-500 mb-4">
-                        <span>Duration: 6 weeks</span>
-                        <span>2024</span>
-                      </div>
-                      <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-100">
-                        View Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-white border border-slate-200 hover:border-green-500/50 transition-all duration-300 group shadow-sm">
-                    <CardHeader>
-                      <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-white rounded-lg mb-4 flex items-center justify-center border border-slate-200">
-                        <Database className="h-16 w-16 text-slate-400 group-hover:text-green-600 transition-colors" />
-                      </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge className="bg-blue-50 text-blue-700 border border-blue-200">Electronics</Badge>
-                        <Badge className="bg-green-50 text-green-700 border border-green-200">Completed</Badge>
-                      </div>
-                      <CardTitle className="text-slate-900">TechMart Electronics</CardTitle>
-                      <CardDescription className="text-slate-600">
-                        High-performance electronics store with advanced inventory management and B2B features.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex justify-between text-sm text-slate-500 mb-4">
-                        <span>Duration: 8 weeks</span>
-                        <span>2024</span>
-                      </div>
-                      <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-100">
-                        View Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-white border border-slate-200 hover:border-purple-500/50 transition-all duration-300 group shadow-sm">
-                    <CardHeader>
-                      <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-white rounded-lg mb-4 flex items-center justify-center border border-slate-200">
-                        <Palette className="h-16 w-16 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                      </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge className="bg-purple-50 text-purple-700 border border-purple-200">Art & Crafts</Badge>
-                        <Badge className="bg-yellow-50 text-yellow-700 border border-yellow-200">In Progress</Badge>
-                      </div>
-                      <CardTitle className="text-slate-900">ArtisanCraft Marketplace</CardTitle>
-                      <CardDescription className="text-slate-600">
-                        Handmade goods marketplace with artist profiles and custom order management.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex justify-between text-sm text-slate-500 mb-4">
-                        <span>Duration: 10 weeks</span>
-                        <span>2024</span>
-                      </div>
-                      <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-100">
-                        View Details
-                      </Button>
-                    </CardContent>
-                  </Card>
+                  <ProjectCard
+                    title="StyleHub Fashion Store"
+                    description="Modern fashion ecommerce with AR try-on & social shopping integration."
+                    duration="6 wks"
+                    year="2024"
+                    categoryBadges={["Fashion", "AR", "Social"]}
+                    statusBadge="Completed"
+                    icon={<Globe className="h-7 w-7" />}
+                    accent="blue"
+                  />
+                  <ProjectCard
+                    title="TechMart Electronics"
+                    description="High-performance electronics store with advanced inventory & B2B features."
+                    duration="8 wks"
+                    year="2024"
+                    categoryBadges={["Electronics", "Inventory", "B2B"]}
+                    statusBadge="Completed"
+                    icon={<Database className="h-7 w-7" />}
+                    accent="green"
+                  />
+                  <ProjectCard
+                    title="ArtisanCraft Marketplace"
+                    description="Handmade goods marketplace with artist profiles & custom orders."
+                    duration="10 wks"
+                    year="2024"
+                    categoryBadges={["Marketplace", "Artists", "Custom"]}
+                    statusBadge="In Progress"
+                    icon={<Palette className="h-7 w-7" />}
+                    accent="purple"
+                  />
                 </div>
               </div>
             </TabsContent>
