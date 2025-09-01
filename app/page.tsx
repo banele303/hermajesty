@@ -21,30 +21,30 @@ import { Progress } from "@/components/ui/progress"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+  <div className="min-h-screen bg-gradient-to-br from-white via-white to-white">
       {/* Navigation */}
-      <nav className="border-b border-slate-700/50 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+  <nav className="border-b border-slate-200/60 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">HMS</span>
+                <span className="text-slate-900 font-bold text-sm">HMS</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-white font-bold text-lg leading-tight">HER MAJESTY</span>
-                <span className="text-blue-400 font-medium text-sm leading-tight">SOUTHFLOW</span>
+                <span className="text-slate-900 font-bold text-lg leading-tight">HER MAJESTY</span>
+                <span className="text-blue-600 font-medium text-sm leading-tight">SOUTHFLOW</span>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <Link href="#about" className="text-slate-300 hover:text-white transition-colors">
+              <Link href="#about" className="text-slate-600 hover:text-slate-900 transition-colors">
                 About
               </Link>
-              <Link href="#services" className="text-slate-300 hover:text-white transition-colors">
+              <Link href="#services" className="text-slate-600 hover:text-slate-900 transition-colors">
                 Services
               </Link>
-              <Link href="/portfolio" className="text-slate-300 hover:text-white transition-colors">
+              <Link href="/portfolio" className="text-slate-600 hover:text-slate-900 transition-colors">
                 Portfolio
               </Link>
               <Link href="#nextjs" className="text-slate-300 hover:text-white transition-colors">

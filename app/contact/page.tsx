@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { ArrowRight, Mail, MessageCircle, MapPin, Clock, Phone, Send } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { trackFb } from "@/lib/pixel"
 
 declare global {
   interface Window {
@@ -36,10 +37,8 @@ export default function ContactPage() {
     e.preventDefault()
     
     // Track contact form submission with Meta Pixel
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact')
-      window.fbq('track', 'Lead')
-    }
+  trackFb('Contact')
+  trackFb('Lead')
     
     // Handle form submission here
     console.log('Form submitted:', formData)
@@ -48,30 +47,20 @@ export default function ContactPage() {
 
   const handleWhatsAppClick = () => {
     // Track WhatsApp click
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact', {
-        contact_method: 'whatsapp'
-      })
-    }
+  trackFb('Contact', { contact_method: 'whatsapp' })
     window.open('https://wa.me/27631995124', '_blank')
   }
 
   const handleEmailClick = () => {
     // Track email click
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact', {
-        contact_method: 'email'
-      })
-    }
+  trackFb('Contact', { contact_method: 'email' })
     window.location.href = 'mailto:alex@southflow.co.za'
   }
 
   const handleScheduleClick = () => {
     // Track consultation booking
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Schedule')
-      window.fbq('track', 'Lead')
-    }
+  trackFb('Schedule')
+  trackFb('Lead')
     // Add your scheduling logic here
     alert('Scheduling feature coming soon! For now, please contact us directly.')
   }
