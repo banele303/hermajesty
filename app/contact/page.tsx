@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowRight, Mail, MessageCircle, MapPin, Clock, Phone, Send } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { trackFb } from "@/lib/pixel"
 
 declare global {
@@ -33,12 +33,42 @@ export default function ContactPage() {
     })
   }
 
+  // Map budget selection to approximate numeric value (ZAR) for ad optimization
+  const budgetToValue: Record<string, number> = {
+    'under-5k': 2500,
+    '5k-15k': 10000,
+    '15k-50k': 30000,
+    '50k-100k': 75000,
+    '100k-plus': 100000,
+  }
+
+  useEffect(() => {
+    // Page level content view event (optional but helps optimization)
+    trackFb('ViewContent', {
+      content_name: 'Contact Page',
+      content_category: 'Lead',
+    })
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
     // Track contact form submission with Meta Pixel
-  trackFb('Contact')
-  trackFb('Lead')
+  const value = budgetToValue[formData.budget] || 0
+  trackFb('Contact', {
+    contact_method: 'form',
+    budget_range: formData.budget || 'unspecified',
+    service: formData.service || 'unspecified',
+  })
+  trackFb('Lead', {
+    value,
+    currency: 'ZAR',
+    content_name: 'Contact Form Submission',
+    content_category: 'Lead',
+    submission_method: 'form',
+    budget_range: formData.budget || 'unspecified',
+    service: formData.service || 'unspecified',
+  })
     
     // Handle form submission here
     console.log('Form submitted:', formData)
@@ -48,19 +78,39 @@ export default function ContactPage() {
   const handleWhatsAppClick = () => {
     // Track WhatsApp click
   trackFb('Contact', { contact_method: 'whatsapp' })
+  trackFb('Lead', {
+    value: 0,
+    currency: 'ZAR',
+    content_name: 'WhatsApp Click',
+    content_category: 'Lead',
+    submission_method: 'whatsapp',
+  })
     window.open('https://wa.me/27631995124', '_blank')
   }
 
   const handleEmailClick = () => {
     // Track email click
   trackFb('Contact', { contact_method: 'email' })
+  trackFb('Lead', {
+    value: 0,
+    currency: 'ZAR',
+    content_name: 'Email Click',
+    content_category: 'Lead',
+    submission_method: 'email',
+  })
     window.location.href = 'mailto:alex@southflow.co.za'
   }
 
   const handleScheduleClick = () => {
     // Track consultation booking
   trackFb('Schedule')
-  trackFb('Lead')
+  trackFb('Lead', {
+    value: 0,
+    currency: 'ZAR',
+    content_name: 'Schedule Call Attempt',
+    content_category: 'Lead',
+    submission_method: 'schedule',
+  })
     // Add your scheduling logic here
     alert('Scheduling feature coming soon! For now, please contact us directly.')
   }
