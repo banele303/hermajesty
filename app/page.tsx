@@ -56,7 +56,7 @@ export default function HomePage() {
               <Link href="#pricing" className="text-slate-300 hover:text-white transition-colors">
                 Pricing
               </Link>
-              <Link href="#contact" className="text-slate-300 hover:text-white transition-colors">
+              <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">
                 Contact
               </Link>
             </div>
@@ -793,94 +793,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-16 lg:py-20 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16">
-            <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">Get In Touch</Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
-            <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
-              Let's discuss how we can bring your vision to life with cutting-edge technology and expert craftsmanship
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-8">Get in Touch</h3>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-blue-400 text-xl">📧</span>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Email</div>
-                    <div className="text-slate-300">alex@southflow.co.za</div>
-                    <div className="text-slate-400 text-sm">Response within 2 hours</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-400 text-xl">📱</span>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">WhatsApp</div>
-                    <div className="text-slate-300">+27 63 199 5124</div>
-                    <div className="text-slate-400 text-sm">Available 9 AM - 6 PM SAST</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-400 text-xl">🌍</span>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium">Location</div>
-                    <div className="text-slate-300">South Africa</div>
-                    <div className="text-slate-400 text-sm">Serving clients globally</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">Start Your Project Today</CardTitle>
-                <CardDescription className="text-slate-300">
-                  Tell us about your project and we'll get back to you within 2 hours with a detailed proposal
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg py-6">
-                      📧 Email Us
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="border-green-500 text-green-400 hover:bg-green-500/10 text-lg py-6"
-                    >
-                      💬 WhatsApp
-                    </Button>
-                  </div>
-
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-lg py-6">
-                    🚀 Schedule Free Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-
-                  <div className="text-center space-y-2">
-                    <div className="text-slate-400 text-sm">✅ Free consultation • ✅ No commitment required</div>
-                    <div className="text-slate-400 text-sm">
-                      ✅ Detailed project proposal • ✅ Timeline & cost estimate
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+  {/* Contact section removed. Use /contact page for tracking & analytics */}
 
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-700">
@@ -968,7 +881,7 @@ export default function HomePage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#contact" className="hover:text-white transition-colors">
+                  <Link href="/contact" className="hover:text-white transition-colors">
                     Contact
                   </Link>
                 </li>

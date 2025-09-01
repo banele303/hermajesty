@@ -53,12 +53,12 @@ export default function PortfolioPage() {
               <Link href="/#pricing" className="text-slate-300 hover:text-white transition-colors">
                 Pricing
               </Link>
-              <Link href="/#contact" className="text-slate-300 hover:text-white transition-colors">
+              <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">
                 Contact
               </Link>
             </div>
 
-            <Link href="/#contact">
+            <Link href="/contact">
               <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
                 Get Started
               </Button>
@@ -655,7 +655,7 @@ export default function PortfolioPage() {
             Let's discuss how we can bring your vision to life with our proven expertise and cutting-edge technologies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#contact">
+            <Link href="/contact">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4"
