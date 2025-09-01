@@ -15,13 +15,15 @@ export function LeadTracker() {
       const plan = target.getAttribute('data-lead-plan') || undefined
       const valueAttr = target.getAttribute('data-lead-value')
       const value = valueAttr ? parseFloat(valueAttr) || 0 : 0
-      trackFb('Lead', {
+      const params = {
         content_name: 'CTA Click',
         lead_source: source,
         plan,
         value,
         currency: 'ZAR',
-      })
+      }
+      trackFb('Lead', params)
+      trackFb('Contact', params)
     }
     document.addEventListener('click', handler, { capture: true })
     return () => document.removeEventListener('click', handler, { capture: true } as any)
