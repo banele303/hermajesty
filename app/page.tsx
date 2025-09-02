@@ -18,52 +18,87 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { SiteNavbar } from "@/components/site-navbar"
+import { RotatingWords } from "@/components/rotating-words"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-white to-slate-50 text-slate-800">
-      <header className="relative min-h-[70vh] flex flex-col overflow-hidden">
-        {/* Decorative soft gradient blobs */}
-        <div className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 opacity-70 blur-3xl" />
-        <div className="pointer-events-none absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-amber-100 via-teal-50 to-blue-100 opacity-60 blur-3xl" />
+      <header className="relative flex flex-col overflow-hidden min-h-[85vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <Image src="/images/hero-bg.jpg" alt="Abstract technology background" fill priority className="object-cover" />
+          {/* Layered gradient & subtle noise */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-900/30" />
+          <div className="absolute inset-0 mix-blend-overlay opacity-30 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:60px_60px]" />
+        </div>
         <SiteNavbar />
-        {/* Hero content */}
-        <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
-          <div className="text-center max-w-5xl">
-            <Badge className="mb-6 bg-blue-50 text-blue-700 border border-blue-200 shadow-sm text-sm sm:text-base">🇿🇦 Based in South Africa • 5+ Years Experience</Badge>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
-              Build High-End
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent block sm:inline"> Digital Experiences</span>
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed px-2">
-              We craft premium ecommerce shops, property websites, and mobile applications using Next.js and modern technologies — while securing your assets with expert vulnerability testing.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button data-lead data-lead-source="hero_primary_cta" size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-4 w-full sm:w-auto shadow-2xl hover:shadow-blue-500/25 transition-all duration-300">
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-slate-300 bg-white/70 backdrop-blur-sm text-slate-700 hover:bg-slate-100 text-lg px-8 py-4 w-full sm:w-auto shadow-sm">
-                View Our Work
-              </Button>
+        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 py-14">
+          <div className="max-w-6xl mx-auto w-full">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
+                <span className="text-xs font-medium tracking-wide text-blue-200">5+ YEARS • SOUTH AFRICA • PREMIUM DELIVERY</span>
+              </div>
+              <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-white mb-6">
+                High-Performance <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">Digital Products</span>
+                <br className="hidden md:block" /> Engineered For <span className="relative inline-block">
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500/30 via-purple-500/20 to-fuchsia-500/30 blur-xl rounded-full" aria-hidden />
+                  <span className="relative bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent"><RotatingWords words={["Ecommerce","Dashboards","Mobile Apps","Security"]} /></span>
+                </span>
+              </h1>
+              <p className="text-slate-200/90 text-lg sm:text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl">
+                We design, build & secure conversion-focused platforms with modern tech, rigorous performance tuning and proactive security hardening.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <Button data-lead data-lead-source="hero_primary_cta" size="lg" className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-lg px-8 py-5 shadow-2xl shadow-blue-600/30">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-md border-white/30 hover:bg-white/20 text-white text-lg px-8 py-5">
+                  <Link href="/portfolio">View Our Work</Link>
+                </Button>
+              </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-slate-600 mb-8">
-              <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 shadow-sm"><Code className="h-4 w-4 text-blue-500" /><span className="text-sm sm:text-base">Next.js Expert</span></div>
-              <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 shadow-sm"><Shield className="h-4 w-4 text-emerald-500" /><span className="text-sm sm:text-base">Security Testing</span></div>
-              <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 shadow-sm"><Zap className="h-4 w-4 text-amber-500" /><span className="text-sm sm:text-base">High Performance</span></div>
-              <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 shadow-sm"><Award className="h-4 w-4 text-purple-500" /><span className="text-sm sm:text-base">Bug Bounty Expert</span></div>
+
+            {/* Trust / Feature Pills */}
+            <div className="flex flex-wrap gap-3 mb-12">
+              {[
+                { icon: <Code className="h-4 w-4 text-blue-300" />, label: 'Next.js 14' },
+                { icon: <Shield className="h-4 w-4 text-emerald-300" />, label: 'Security Testing' },
+                { icon: <Zap className="h-4 w-4 text-amber-300" />, label: 'Performance' },
+                { icon: <Award className="h-4 w-4 text-fuchsia-300" />, label: 'Bug Bounty' },
+                { icon: <Rocket className="h-4 w-4 text-purple-300" />, label: 'Scalability' },
+              ].map(t => (
+                <span key={t.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-white/90 text-sm">
+                  {t.icon}{t.label}
+                </span>
+              ))}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
-              <div className="text-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><div className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">50+</div><div className="text-slate-500 text-xs sm:text-sm">Projects</div></div>
-              <div className="text-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><div className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">99%</div><div className="text-slate-500 text-xs sm:text-sm">Satisfaction</div></div>
-              <div className="text-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><div className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">24/7</div><div className="text-slate-500 text-xs sm:text-sm">Support</div></div>
-              <div className="text-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm"><div className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">5+</div><div className="text-slate-500 text-xs sm:text-sm">Years</div></div>
+
+            {/* Metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+              {[
+                { label: 'Projects', value: '50+' },
+                { label: 'Avg. Satisfaction', value: '99%' },
+                { label: 'Uptime Managed', value: '99.9%' },
+                { label: 'Years Experience', value: '5+' },
+              ].map(m => (
+                <div key={m.label} className="relative overflow-hidden rounded-xl border border-white/15 bg-white/5 backdrop-blur-md p-4">
+                  <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-fuchsia-500/10" />
+                  <div className="text-2xl font-bold text-white mb-1 tracking-tight drop-shadow-sm">{m.value}</div>
+                  <div className="text-[11px] uppercase tracking-wide font-medium text-white/70">{m.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-        {/* Additional subtle accents */}
-        <div className="pointer-events-none absolute top-24 left-10 w-24 h-24 bg-blue-200/40 rounded-full blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 w-40 h-40 bg-purple-200/40 rounded-full blur-2xl" />
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60">
+          <div className="h-10 w-6 rounded-full border-2 border-white/30 flex items-start justify-center p-1">
+            <div className="h-2 w-2 rounded-full bg-white/70 animate-bounce" />
+          </div>
+          <span className="text-xs tracking-wider">Scroll</span>
+        </div>
       </header>
 
       {/* Services Section */}
