@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SiteNavbar } from "@/components/site-navbar"
 import { useEffect, useState } from "react"
 
 // Simple intersection observer hook for scroll reveal
@@ -114,46 +115,8 @@ function RotatingWord() {
 export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-white to-slate-50 text-slate-800">
-      {/* Navigation */}
-      <nav className="border-b border-slate-200/70 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
-                <span className="text-white font-bold text-sm tracking-wide">HMS</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-slate-900 font-bold text-lg leading-tight">HMS HER MAJESTY</span>
-                <span className="text-blue-600 font-medium text-sm leading-tight">SOUTHFLOW</span>
-              </div>
-            </Link>
-
-            <div className="hidden lg:flex items-center space-x-8">
-              <Link href="/#about" className="text-slate-600 hover:text-slate-900 transition-colors">
-                About
-              </Link>
-              <Link href="/#services" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Services
-              </Link>
-              <Link href="/portfolio" className="text-slate-900 font-semibold">
-                Portfolio
-              </Link>
-              <Link href="/#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Pricing
-              </Link>
-              <Link href="/contact" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Contact
-              </Link>
-            </div>
-
-            <Link href="/contact">
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-                Get Started
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+  {/* Shared Navigation */}
+  <SiteNavbar />
 
       {/* Hero Section - Modernized */}
       <section className="relative pt-20 pb-24 lg:pt-28 overflow-hidden">

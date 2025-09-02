@@ -10,7 +10,6 @@ import {
   Award,
   Database,
   Server,
-  Menu,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -18,6 +17,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { SiteNavbar } from "@/components/site-navbar"
 
 export default function HomePage() {
   return (
@@ -26,38 +26,7 @@ export default function HomePage() {
         {/* Decorative soft gradient blobs */}
         <div className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 opacity-70 blur-3xl" />
         <div className="pointer-events-none absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-amber-100 via-teal-50 to-blue-100 opacity-60 blur-3xl" />
-        {/* Top nav */}
-        <div className="relative z-20 border-b border-slate-200/70 bg-white/70 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
-                  <span className="text-white font-bold text-sm tracking-wide">HMS</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-slate-900 font-bold text-lg leading-tight">HER MAJESTY</span>
-                  <span className="text-blue-600 font-medium text-sm leading-tight">SOUTHFLOW</span>
-                </div>
-              </div>
-              <nav className="hidden lg:flex items-center space-x-8">
-                <Link href="#about" className="text-slate-600 hover:text-slate-900 transition-colors">About</Link>
-                <Link href="#services" className="text-slate-600 hover:text-slate-900 transition-colors">Services</Link>
-                <Link href="/portfolio" className="text-slate-600 hover:text-slate-900 transition-colors">Portfolio</Link>
-                <Link href="#process" className="text-slate-600 hover:text-slate-900 transition-colors">Process</Link>
-                <Link href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</Link>
-                <Link href="/contact" className="text-slate-600 hover:text-slate-900 transition-colors">Contact</Link>
-              </nav>
-              <div className="hidden sm:block">
-                <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">Get Started</Button>
-              </div>
-              <div className="lg:hidden">
-                <Button variant="ghost" size="sm" className="text-slate-700 hover:text-slate-900">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SiteNavbar />
         {/* Hero content */}
         <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
           <div className="text-center max-w-5xl">
