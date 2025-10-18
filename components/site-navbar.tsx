@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import { useState } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems: { href: string; label: string; hash?: boolean }[] = [
   { href: "/#about", label: "About", hash: true },
   { href: "/#services", label: "Services", hash: true },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/#process", label: "Process", hash: true },
-  { href: "/#pricing", label: "Pricing", hash: true },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -28,7 +28,7 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
               <span className="text-white font-bold text-sm tracking-wide">HMS</span>
             </div>
             <div className="hidden sm:flex flex-col">
-              <span className="text-slate-900 font-bold text-lg leading-tight">HER MAJESTY</span>
+              <span className="text-slate-900 font-bold text-lg leading-tight">Majestic</span>
               <span className="text-blue-600 font-medium text-xs leading-tight">SOUTHFLOW</span>
             </div>
           </Link>
@@ -50,6 +50,7 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
 
           {cta && (
             <div className="hidden sm:flex items-center gap-3">
+              <ThemeToggle />
               <Button asChild size="sm" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-sm">
                 <Link href="/contact">Get Started</Link>
               </Button>
@@ -83,6 +84,9 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
                 <Link href="/contact">Get Started</Link>
               </Button>
             )}
+            <div className="mt-2">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       )}
