@@ -11,6 +11,7 @@ const navItems: { href: string; label: string; hash?: boolean }[] = [
   { href: "/#about", label: "About", hash: true },
   { href: "/#services", label: "Services", hash: true },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/#pricing", label: "Pricing", hash: true },
   { href: "/#process", label: "Process", hash: true },
   { href: "/contact", label: "Contact" },
 ]
