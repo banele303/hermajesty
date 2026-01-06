@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
+import logoPng from "@/public/majestic_devv.png"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
@@ -25,13 +27,16 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-sm tracking-wide">HMS</span>
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="text-slate-900 font-bold text-lg leading-tight">Majestic</span>
-              <span className="text-blue-600 font-medium text-xs leading-tight">SOUTHFLOW</span>
-            </div>
+            <Image
+              src={logoPng}
+              alt="Majestic Dev"
+              width={180}
+              height={52}
+              quality={100}
+              placeholder={logoPng.blurDataURL ? "blur" : undefined}
+              className="h-12 w-auto rounded-lg"
+              priority
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
@@ -48,7 +53,6 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
               )
             })}
           </nav>
-
           {cta && (
             <div className="hidden sm:flex items-center gap-3">
               <ThemeToggle />

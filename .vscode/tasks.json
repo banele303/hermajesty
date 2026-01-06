@@ -1,0 +1,65 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Typecheck project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Typecheck project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Typecheck project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Typecheck project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}

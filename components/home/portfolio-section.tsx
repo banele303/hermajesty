@@ -1,189 +1,184 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+const projects = [
+  {
+    id: 1,
+    title: "Velfix Ecommerce",
+    category: "Ecommerce Platform",
+    description: "High-performance headless commerce with AI-driven recommendations.",
+    image: "/images/frontstore.png", // Ensure this path exists or use a placeholder
+    tags: ["Next.js", "Stripe", "AI Engine"],
+    size: "large", // spans 2 cols
+  },
+  {
+    id: 2,
+    title: "PropTech Elite",
+    category: "Real Estate",
+    description: "Luxury property portal with virtual tours and lead automation.",
+    image: "/images/hero-bg.jpg",
+    tags: ["React", "Virtual VR", "CRM"],
+    size: "medium", // spans 1 col
+  },
+  {
+    id: 3,
+    title: "FitPulse AI",
+    category: "Mobile App",
+    description: "Computer vision powered workout tracking application.",
+    image: "/images/dashboard2.png",
+    tags: ["React Native", "Vision API", "HealthKit"],
+    size: "medium",
+  },
+  {
+    id: 4,
+    title: "Sentinal Analytics",
+    category: "SaaS Dashboard",
+    description: "Enterprise-grade business intelligence and reporting hub.",
+    image: "/images/dashboard1.png",
+    tags: ["Big Data", "D3.js", "PostgreSQL"],
+    size: "large",
+  },
+  {
+    id: 5,
+    title: "SecureScan",
+    category: "Cybersecurity",
+    description: "Automated vulnerability assessment and penetration testing tool.",
+    image: "/images/frontstore.png", // Reuse or placeholder
+    tags: ["Python", "Security", "Automation"],
+    size: "medium",
+  },
+  {
+    id: 6,
+    title: "GrowthFlow",
+    category: "Marketing",
+    description: "AI marketing agent that auto-optimizes ad spend.",
+    image: "/images/dashboard2.png",
+    tags: ["AI Agents", "Ads API", "Automation"],
+    size: "medium",
+  },
+];
 
 export function PortfolioSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
-    <section className="py-16 lg:py-20 bg-slate-50/40 dark:bg-slate-800/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 lg:mb-16">
-          <Badge className="mb-4 bg-green-50 text-green-700 border border-green-200 dark:bg-green-950 dark:text-green-300 dark:border-green-800">Our Portfolio</Badge>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Projects We've Built for Clients</h2>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Discover our successful projects across ecommerce, mobile apps, and web development. Each project showcases our commitment to quality and innovation.
-          </p>
-        </div>
+    <section ref={containerRef} className="relative py-24 lg:py-32 bg-[#020205] overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]" />
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Velfix Ecommerce Platform */}
-          <Card className="bg-white border border-slate-200 hover:border-blue-400/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/frontstore.png" alt="Velfix Ecommerce Platform" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-blue-500 text-white text-xs">Ecommerce</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Velfix Ecommerce Platform</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                A high-performance ecommerce platform with advanced search, category navigation, and seamless user experience handling thousands of products.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">Next.js</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">TypeScript</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border border-purple-200 text-xs">Prisma</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>99.9% Uptime</span>
-                <span>2.1s Load Time</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Property Management System */}
-          <Card className="bg-white border border-slate-200 hover:border-purple-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/hero-bg.jpg" alt="Property Management System" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-purple-500 text-white text-xs">Real Estate</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Luxury Property Portal</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                Sophisticated real estate platform with virtual tours, advanced search filters, and integrated lead management for premium properties.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">Next.js</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">React</Badge>
-                <Badge className="bg-orange-50 text-orange-700 border border-orange-200 text-xs">Tailwind</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>500+ Properties</span>
-                <span>50% Lead Increase</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Mobile App Dashboard */}
-          <Card className="bg-white border border-slate-200 hover:border-green-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/dashboard2.png" alt="Mobile App Dashboard" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-green-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-green-500 text-white text-xs">Mobile App</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Fitness Tracking App</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                Cross-platform mobile application with workout tracking, progress analytics, and social features for fitness enthusiasts.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">React Native</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">Node.js</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border border-purple-200 text-xs">MongoDB</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>10k+ Downloads</span>
-                <span>4.8★ Rating</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Admin Dashboard */}
-          <Card className="bg-white border border-slate-200 hover:border-orange-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/dashboard1.png" alt="Admin Dashboard" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-orange-500 text-white text-xs">Dashboard</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Business Analytics Platform</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                Comprehensive admin dashboard with real-time analytics, data visualization, and automated reporting for data-driven decisions.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">Next.js</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">Chart.js</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border border-purple-200 text-xs">PostgreSQL</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>1M+ Data Points</span>
-                <span>Real-time Updates</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Security Testing Platform */}
-          <Card className="bg-white border border-slate-200 hover:border-red-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/frontstore.png" alt="Security Testing Platform" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-red-500 text-white text-xs">Security</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Vulnerability Assessment Tool</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                Automated security testing platform with comprehensive vulnerability scanning, penetration testing, and detailed reporting.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">Python</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">Django</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border border-purple-200 text-xs">OWASP</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>1000+ Scans</span>
-                <span>Zero False Positives</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Marketing Campaign Platform */}
-          <Card className="bg-white border border-slate-200 hover:border-teal-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <div className="relative overflow-hidden">
-              <Image src="/images/dashboard2.png" alt="Marketing Campaign Platform" width={640} height={360} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-teal-600/20 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3">
-                <Badge className="bg-teal-500 text-white text-xs">Marketing</Badge>
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Digital Marketing Hub</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                Integrated marketing platform with campaign management, social media automation, and performance analytics for comprehensive digital strategies.
-              </p>
-              <div className="flex flex-wrap gap-1 mb-4">
-                <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs">React</Badge>
-                <Badge className="bg-green-50 text-green-700 border border-green-200 text-xs">Node.js</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border border-purple-200 text-xs">MongoDB</Badge>
-              </div>
-              <div className="flex items-center justify-between text-sm text-slate-500">
-                <span>300% ROI Increase</span>
-                <span>50k+ Impressions</span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="text-center">
-          <Link href="/portfolio">
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100">
-              View All Projects
-              <ArrowRight className="ml-2 h-4 w-4" />
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Badge variant="outline" className="mb-6 border-blue-500/50 text-blue-400 px-4 py-1 text-sm tracking-wider uppercase">
+                Selected Works
+              </Badge>
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[0.9]">
+                Digital <br /> Do<span className="text-blue-600">min</span>ance.
+              </h2>
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="md:text-right max-w-sm"
+          >
+            <p className="text-slate-400 text-lg leading-relaxed mb-6">
+              A curation of our finest digital products. Where engineering meets art to create unfair advantages for our clients.
+            </p>
+            <Button variant="link" className="text-white p-0 h-auto hover:text-blue-400 group text-lg">
+              View All Projects <ArrowUpRight className="ml-2 w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
             </Button>
-          </Link>
+          </motion.div>
+        </div>
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, idx) => (
+            <PortfolioCard key={project.id} project={project} index={idx} />
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
+}
+
+function PortfolioCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const isLarge = project.size === "large";
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className={`group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 ${
+        isLarge ? "md:col-span-2 aspect-[16/10] md:aspect-[21/10]" : "aspect-[4/5] md:aspect-[3/4]"
+      }`}
+    >
+      {/* Image Background */}
+      <div className="absolute inset-0 w-full h-full">
+         <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020205] via-[#020205]/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-60" />
+      </div>
+
+      {/* Floating Action Button (Hidden until hover) */}
+      <div className="absolute top-6 right-6 z-20 translate-y-[-20px] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg transition-transform hover:scale-110 hover:bg-blue-600 hover:border-blue-600">
+          <ExternalLink className="h-5 w-5" />
+        </div>
+      </div>
+
+      {/* Content Overlay */}
+      <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-10 flex flex-col justify-end h-full">
+        <div className="transform transition-transform duration-300 group-hover:-translate-y-2">
+           <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag) => (
+              <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 backdrop-blur-md">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 leading-tight">
+            {project.title}
+          </h3>
+          <p className="text-slate-300 text-sm md:text-base max-w-lg line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+            {project.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Hover Line */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 transform scale-x-0 transition-transform duration-500 group-hover:scale-x-100 origin-left" />
+    </motion.div>
+  );
 }

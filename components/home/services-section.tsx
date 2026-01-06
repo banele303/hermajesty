@@ -1,181 +1,118 @@
-import { Check, Globe, Smartphone, Shield, Database, Server, TrendingUp, Search } from "lucide-react"
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+"use client"
+
+import Link from "next/link"
+import { ArrowRight, Code2, Globe, Sparkles, Workflow } from "lucide-react"
 
 export function ServicesSection() {
+  const services = [
+    {
+      icon: Code2,
+      title: "Custom Software Development",
+      description: "Tailored solutions built from the ground up to match your exact business requirements and workflows.",
+      features: [
+        "Enterprise Applications",
+        "SaaS Platforms",
+        "Mobile Apps (iOS & Android)",
+        "Progressive Web Apps",
+        "Ecommerce Systems",
+      ],
+      href: "/services/custom-software",
+      gradient: "from-blue-500 to-cyan-500",
+      iconBg: "bg-blue-500"
+    },
+    {
+      icon: Workflow,
+      title: "Intelligent Automation",
+      description: "Streamline operations and boost productivity with custom automation solutions that work 24/7.",
+      features: ["Process Automation", "API Integrations", "Workflow Optimization", "Data Processing"],
+      href: "/services/automation",
+      gradient: "from-indigo-500 to-blue-500",
+      iconBg: "bg-indigo-500"
+    },
+    {
+      icon: Globe,
+      title: "Premium Web Development",
+      description: "Stunning, high-performance websites and web applications that convert visitors into customers.",
+      features: ["Custom Ecommerce", "Corporate Websites", "Landing Pages", "Web Portals"],
+      href: "/services/web-development",
+      gradient: "from-cyan-500 to-blue-500",
+      iconBg: "bg-cyan-500"
+    },
+    {
+      icon: Sparkles,
+      title: "AI Agents & Integrations",
+      description: "Deploy AI copilots, chatbots, and intelligent workflows that plug into your existing stack and unlock new revenue.",
+      features: [
+        "Custom AI Assistants",
+        "N8N / LangChain Pipelines",
+        "CRM & ERP Automations",
+        "Analytics & Reporting",
+      ],
+      href: "/services/ai-agents",
+      gradient: "from-blue-500 to-indigo-500",
+      iconBg: "bg-slate-900"
+    }
+  ]
+
   return (
-    <section id="services" className="py-16 lg:py-20 bg-white dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="relative overflow-hidden bg-slate-950 dark:bg-[#020205] py-10 lg:py-20 text-slate-100">
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-[#020205] to-[#020205]" />
+      <div className="relative z-10 mx-auto max-w-[95%] px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
-          <Badge className="mb-4 bg-purple-50 text-purple-700 border border-purple-200">Our Services</Badge>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">Premium Digital Solutions</h2>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto">
-            From concept to deployment, we deliver exceptional digital solutions that drive results and exceed expectations
-          </p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight">
+            <span className="text-slate-200">Automation That</span>
+            <span className="ml-3 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500"> Delivers Results</span>
+          </h2>
+          <p className="mt-3 text-slate-400">You're not just buying software — <span className="text-sky-400">you're tapping into a proven blueprint.</span></p>
+          <div className="mt-4 mx-auto w-44 h-1 bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 rounded-full" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-16">
-          <Card className="bg-white border border-slate-200 hover:border-blue-400/50 transition-all duration-300 group shadow-sm overflow-hidden dark:bg-slate-800 dark:border-slate-700 dark:hover:border-blue-500/50">
-            <CardHeader>
-              <div className="relative mb-4 rounded-xl overflow-hidden">
-                <Image src="/images/frontstore.png" alt="Ecommerce storefront preview" width={640} height={360} className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-transparent" />
-                <Globe className="absolute top-3 left-3 h-8 w-8 text-white drop-shadow-md" />
-              </div>
-              <CardTitle className="text-slate-900 dark:text-white text-lg sm:text-xl">Ecommerce Websites</CardTitle>
-              <CardDescription className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
-                High-converting online stores built with Next.js, featuring advanced product management, secure payments, inventory tracking, and lightning-fast performance that scales with your business.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-slate-600 dark:text-slate-300 text-sm">
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Custom product catalogs</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Payment gateway integration</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Advanced analytics dashboard</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>SEO optimization</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+  <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 xl:grid-cols-4 xl:gap-8">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="relative flex h-full flex-col rounded-3xl border border-slate-800 bg-slate-900/70 px-8 pb-10 pt-16 shadow-[0_35px_120px_-40px_rgba(15,118,230,0.35)]"
+            >
+              <div className="absolute -top-12 right-1/2 h-32 w-32 translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+              <div className="absolute -bottom-12 left-0 h-28 w-28 rounded-full bg-sky-500/10 blur-2xl" />
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="absolute -top-12 left-1/2 flex -translate-x-1/2 flex-col items-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-sky-400 via-blue-600 to-indigo-500 opacity-70 blur-xl" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-950 text-white shadow-xl shadow-blue-500/40 ring-4 ring-blue-500/20">
+                      <service.icon className="h-8 w-8 text-sky-400" />
+                    </div>
+                  </div>
+                </div>
 
-          <Card className="bg-white border border-slate-200 hover:border-purple-500/50 transition-all duration-300 group shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-4 rounded-xl overflow-hidden">
-                <Image src="/images/dashboard2.png" alt="Mobile application dashboard preview" width={640} height={360} className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/25 via-transparent to-transparent" />
-                <Smartphone className="absolute top-3 left-3 h-8 w-8 text-white drop-shadow-md" />
-              </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">Mobile Applications</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Native and cross-platform mobile apps that provide seamless user experiences across iOS and Android devices, with offline capabilities and push notifications.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-slate-600 text-sm">
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>iOS & Android development</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Cross-platform compatibility</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Push notifications</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>App store deployment</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+                <h3 className="mt-8 text-center text-2xl font-semibold text-white">{service.title}</h3>
+                <p className="mt-3 text-center text-sm leading-relaxed text-slate-400">
+                  {service.description}
+                </p>
 
-          <Card className="bg-white border border-slate-200 hover:border-green-500/50 transition-all duration-300 group sm:col-span-2 lg:col-span-1 shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-4 rounded-xl overflow-hidden">
-                <Image src="/images/dashboard1.png" alt="Security testing analytics preview" width={640} height={360} className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/25 via-transparent to-transparent" />
-                <Shield className="absolute top-3 left-3 h-8 w-8 text-white drop-shadow-md" />
-              </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">Security Testing</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Comprehensive vulnerability assessments and penetration testing to secure your digital assets against potential threats, with detailed reports and remediation guidance.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-slate-600 text-sm">
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Vulnerability assessments</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Penetration testing</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Security audits</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                  <span>Bug bounty expertise</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
+                <ul className="mt-6 space-y-3 text-left">
+                  {service.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3">
+                      <span className="mt-1 flex h-2.5 w-2.5 flex-shrink-0 items-center justify-center">
+                        <span className="h-2 w-2 rounded-full bg-gradient-to-br from-sky-400 to-blue-500" />
+                      </span>
+                      <span className="text-sm text-slate-300 leading-relaxed">{f}</span>
+                    </li>
+                  ))}
+                </ul>
 
-        {/* Additional Services */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          <Card className="bg-white border border-slate-200 hover:border-orange-400/50 transition-all duration-300 shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-3 rounded-xl overflow-hidden">
-                <Image src="/images/hero-bg.jpg" alt="Property website hero mockup" width={640} height={360} className="h-36 w-full object-cover brightness-95 transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/30 via-transparent to-transparent" />
-                <Database className="absolute top-3 left-3 h-7 w-7 text-white drop-shadow" />
+                <div className="mt-6 flex flex-1 items-end justify-center">
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-sky-400 transition-colors duration-150 hover:text-sky-300"
+                  >
+                    Read more
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">Property Websites</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Sophisticated real estate platforms with advanced search, virtual tours, and lead management
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-white border border-slate-200 hover:border-cyan-500/50 transition-all duration-300 shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-3 rounded-xl overflow-hidden">
-                <Image src="/images/dashboard2.png" alt="API development architecture diagram" width={640} height={360} className="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/25 via-transparent to-transparent" />
-                <Server className="absolute top-3 left-3 h-7 w-7 text-white drop-shadow" />
-              </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">API Development</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Robust REST and GraphQL APIs with comprehensive documentation and testing
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-white border border-slate-200 hover:border-green-500/50 transition-all duration-300 shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-3 rounded-xl overflow-hidden">
-                <Image src="/images/frontstore.png" alt="Digital marketing campaign dashboard" width={640} height={360} className="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-green-600/25 via-transparent to-transparent" />
-                <TrendingUp className="absolute top-3 left-3 h-7 w-7 text-white drop-shadow" />
-              </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">Digital Marketing</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Comprehensive digital marketing strategies including social media, content marketing, and campaign management to boost your online presence
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-white border border-slate-200 hover:border-yellow-500/50 transition-all duration-300 shadow-sm overflow-hidden">
-            <CardHeader>
-              <div className="relative mb-3 rounded-xl overflow-hidden">
-                <Image src="/images/dashboard1.png" alt="SEO analytics and optimization tools" width={640} height={360} className="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-yellow-600/25 via-transparent to-transparent" />
-                <Search className="absolute top-3 left-3 h-7 w-7 text-white drop-shadow" />
-              </div>
-              <CardTitle className="text-slate-900 text-lg sm:text-xl">SEO Optimization</CardTitle>
-              <CardDescription className="text-slate-600 text-sm sm:text-base">
-                Advanced SEO services including keyword research, on-page optimization, technical SEO, and performance monitoring to improve search rankings
-              </CardDescription>
-            </CardHeader>
-          </Card>
+            </div>
+          ))}
         </div>
       </div>
     </section>
