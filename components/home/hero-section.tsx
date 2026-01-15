@@ -35,7 +35,7 @@ export function Hero() {
                 typingSpeedMs={70}
                 deletingSpeedMs={45}
                 holdMs={900}
-                className="min-w-[16ch] text-primary animate-typing-color bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600"
+                className="min-w-[16ch] text-primary animate-typing-color bg-clip-text bg-linear-to-r from-blue-400 to-indigo-600"
               />
             </h1>
             <style jsx>{`
