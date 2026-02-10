@@ -1,16 +1,17 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logoPng from "@/public/majestic_devv.png";
+import logoPng from "@/public/images/logos/sqwiziflow.png";
 import { MobileMenu } from "./mobile-menu";
+import { Button } from "@/components/ui/button";
+import { MoveRight } from "lucide-react";
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -18,40 +19,65 @@ export const Header = () => {
 
   return (
     <div
-      className={`fixed z-50 pt-0 md:pt-1 top-0 left-0 w-full transition-colors duration-200 ${
-        scrolled ? "bg-black" : "bg-transparent"
+      className={`fixed z-50 top-0 left-0 right-0 transition-all duration-500 py-1.5 ${
+        scrolled 
+          ? "bg-[#020202]/85 backdrop-blur-2xl border-b border-white/5 shadow-xl" 
+          : "bg-transparent"
       }`}
     >
-      <header className="flex items-center justify-between container py-0.5 md:py-1">
-        <Link href="/">
+      <header className="container mx-auto px-4 md:px-8 flex items-center justify-between h-14">
+        
+        {/* LOGO - Consistent Large Size */}
+        <Link href="/" className="relative z-50 group flex items-center">
           <Image
             src={logoPng}
-            alt="Majestic Dev"
-            width={132}
-            height={36}
-            quality={100}
-            placeholder={logoPng.blurDataURL ? "blur" : undefined}
-            className="w-[100px] md:w-[132px] h-auto rounded-lg"
+            alt="SqwizFlow Ai"
+            width={260}
+            height={60}
+            className="w-[210px] md:w-[240px] h-auto object-contain transition-all duration-500 group-hover:scale-105"
             priority
           />  
+          <div className="absolute -inset-4 bg-orange-500/0 group-hover:bg-orange-500/5 blur-2xl rounded-full transition-all duration-500 -z-10" />
         </Link>
-        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-7">
-          {(["About", "Portfolio", "Insights", "Contact"]).map((item) => (
+        
+        {/* DESKTOP NAV - Consistent Premium Typography */}
+        <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 px-8 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md">
+          {[
+            { name: "About", href: "/#about" },
+            { name: "Portfolio", href: "/#portfolio" },
+            { name: "AI Services", href: "/ai-services" },
+            { name: "Insights", href: "/#insights" },
+            { name: "Contact", href: "/#contact" }
+          ].map((item) => (
             <Link
-              className={`uppercase inline-block font-mono text-sm md:text-[0.95rem] leading-none duration-150 transition-colors ease-out ${
-                scrolled ? "text-gray-200 hover:text-white" : "text-foreground/60 hover:text-foreground/100"
-              }`}
-              href={`#${item.toLowerCase()}`}
-              key={item}
+              key={item.name}
+              href={item.href}
+              className="text-[13px] font-semibold text-slate-400 hover:text-white transition-all duration-300 relative group tracking-[0.1em] uppercase font-sans"
             >
-              {item}
+              {item.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-gradient-to-r from-orange-500 to-amber-300 transition-all duration-500 group-hover:w-full" />
             </Link>
           ))}
         </nav>
-        <Link className={`uppercase max-lg:hidden transition-colors ease-out duration-150 font-mono text-sm md:text-[0.95rem] leading-none ${scrolled ? "text-white hover:text-white/80" : "text-primary hover:text-primary/80"}`} href="/#sign-in">
-          Free Consultation Call
-        </Link>
-        <MobileMenu />
+
+        {/* CTA & MOBILE MENU - Consistent Button Scale */}
+        <div className="flex items-center gap-6">
+          <Link href="/schedule-a-meeting" className="hidden sm:block">
+            <Button 
+               className="group relative overflow-hidden rounded-full bg-orange-600 text-white hover:bg-orange-500 transition-all duration-500 border-none h-10 px-7 font-bold text-sm tracking-tight shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)]"
+            >
+               <span className="relative z-10 flex items-center gap-2">
+                 Schedule Session <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+               </span>
+               <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 opacity-100 transition-opacity duration-500" />
+            </Button>
+          </Link>
+          
+          <div className="lg:hidden">
+            <MobileMenu className="text-white" />
+          </div>
+        </div>
+
       </header>
     </div>
   );

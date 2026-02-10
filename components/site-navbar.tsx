@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import logoPng from "@/public/majestic_devv.png"
+import logoPng from "@/public/images/logos/sqwiziflow.png"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
@@ -29,7 +29,7 @@ export function SiteNavbar({ cta = true }: { cta?: boolean }) {
           <Link href="/" className="flex items-center space-x-3">
             <Image
               src={logoPng}
-              alt="Majestic Dev"
+              alt="SqwizFlow Ai"
               width={180}
               height={52}
               quality={100}

@@ -1,18 +1,12 @@
 "use client";
 
-import { useRef, MouseEvent } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
   motion, 
-  useScroll, 
-  useTransform, 
-  useMotionTemplate, 
-  useMotionValue,
-  useSpring
 } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, MoveRight, Sparkles, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +19,7 @@ const projects = [
     image: "/images/portifolio/portfolio-project.png",
     tags: ["Next.js", "Stripe", "Marketplace"],
     link: "https://joumasecars.africa",
-    size: "large", // spans 2 cols
+    className: "lg:col-span-2",
   },
   {
     id: 2,
@@ -35,7 +29,7 @@ const projects = [
     image: "/images/portifolio/student-24.png",
     tags: ["React", "Maps API", "Marketplace"],
     link: "https://www.student24.co/",
-    size: "medium", // spans 1 col
+    className: "lg:col-span-1",
   },
   {
     id: 3,
@@ -45,7 +39,7 @@ const projects = [
     image: "/images/portifolio/advanced-portfolio.png",
     tags: ["Next.js", "Automotive", "SEO"],
     link: "https://www.advanceauto.co.za",
-    size: "medium",
+    className: "lg:col-span-1",
   },
   {
     id: 4,
@@ -55,17 +49,17 @@ const projects = [
     image: "/images/dashboard1.png",
     tags: ["Big Data", "D3.js", "PostgreSQL"],
     link: "#",
-    size: "large",
+    className: "lg:col-span-2",
   },
   {
     id: 5,
     title: "SecureScan",
     category: "Cybersecurity",
     description: "Automated vulnerability assessment and penetration testing tool.",
-    image: "/images/frontstore.png", // Reuse or placeholder
+    image: "/images/frontstore.png",
     tags: ["Python", "Security", "Automation"],
     link: "#",
-    size: "medium",
+    className: "lg:col-span-1",
   },
   {
     id: 6,
@@ -75,217 +69,179 @@ const projects = [
     image: "/images/portifolio/mon-portfolio.png",
     tags: ["Ecommerce", "Next.js", "Design"],
     link: "https://mon-bridal-events.vercel.app/",
-    size: "medium",
+    className: "lg:col-span-1",
   },
 ];
 
 export function PortfolioSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <section ref={containerRef} className="relative py-24 lg:py-32 bg-[#020205] overflow-hidden">
-      {/* Background Decor - Deeper and more complex gradient mesh */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-225 h-225 bg-linear-to-br from-blue-600/10 to-transparent rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-225 h-225 bg-linear-to-tr from-indigo-600/10 to-transparent rounded-full blur-[100px]" />
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay"></div>
+    <section ref={containerRef} className="relative py-24 lg:py-40 bg-[#020202] overflow-hidden">
+      
+      {/* Background Ambience */}
+      <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/4 left-[-10%] w-[500px] h-[500px] bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-1/4 right-[-10%] w-[500px] h-[500px] bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header - Improved layout */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-12">
-          <div className="max-w-4xl relative">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="absolute -left-12 top-2 hidden xl:block"
-            >
-              <div className="w-px h-32 bg-linear-to-b from-blue-500 to-transparent opacity-50" />
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+        
+        {/* Header - Matching Updated Theme */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <div className="max-w-4xl">
+             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 backdrop-blur-md mb-6 transition-all">
+                <span className="text-[10px] font-bold text-orange-400 tracking-[0.2em] uppercase">Built for Scale</span>
+             </div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8 }}
+              className="text-6xl md:text-8xl font-medium tracking-tighter leading-[0.9] text-white font-[Sentient]"
             >
-              <div className="flex items-center gap-4 mb-8">
-                 <Badge variant="outline" className="border-blue-500/30 text-blue-400 px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase bg-blue-500/5 backdrop-blur-md rounded-full">
-                  Selected Works
-                </Badge>
-                <div className="h-px bg-linear-to-r from-blue-500/50 to-transparent w-32 hidden sm:block" />
-              </div>
-             
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.85] mb-6">
-                Digital <br className="hidden md:block" /> 
-                <span className="relative inline-block">
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-slate-200 to-slate-500 z-10 relative">Excellence.</span>
-                  {/* Subtle glow behind text */}
-                  <span className="absolute inset-0 bg-blue-500/20 blur-2xl z-0" />
-                </span>
-              </h2>
-            </motion.div>
+              Digital <br className="hidden md:block" /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-200 to-orange-400 bg-[length:200%_auto] animate-gradient-x italic">Excellence.</span>
+            </motion.h2>
           </div>
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="md:text-right max-w-sm"
           >
-            <p className="text-slate-400 text-lg md:text-xl leading-relaxed mb-8 font-light">
-              A curation of our finest digital products. Where engineering meets art to create <span className="text-white font-medium">unfair advantages</span> for our clients.
+            <p className="text-slate-400 text-xl leading-relaxed mb-10 font-light">
+              Where engineering meets art. We create <span className="text-white font-medium">unfair advantages</span> through world-class design and elite code.
             </p>
-            <Button variant="outline" className="group h-14 px-8 border-white/10 bg-white/5 text-white hover:bg-blue-600 hover:border-blue-600 transition-all duration-500 rounded-full text-base">
-              View All Projects 
-              <ArrowUpRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <Button variant="outline" className="rounded-full border-white/10 text-slate-300 hover:text-white hover:bg-white/5 backdrop-blur-md px-10 h-16 text-sm font-bold tracking-tight transition-all duration-500 border-none bg-white/5 group" asChild>
+               <Link href="/portfolio">
+                View All Assets <MoveRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+               </Link>
             </Button>
           </motion.div>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Immersive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {projects.map((project, idx) => (
             <PortfolioCard key={project.id} project={project} index={idx} />
           ))}
         </div>
+
       </div>
+      
+      <style jsx>{`
+        @keyframes gradient-x {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+      `}</style>
     </section>
   );
 }
 
 function PortfolioCard({ project, index }: { project: typeof projects[0]; index: number }) {
-  const isLarge = project.size === "large";
-  
-  // Spotlight & Tilt Logic
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
-  const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
-
-  function onMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-    
-    // Tilt effect (simplified)
-    // You could map these values to rotateX/Y if you wanted full 3D tilt
-    // but a spotlight is often cleaner for grid layouts.
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-      onMouseMove={onMouseMove}
       className={cn(
-        "group relative rounded-[2.5rem] bg-slate-900/40 border border-white/5 p-3 sm:p-4",
-        isLarge ? "md:col-span-2 aspect-16/10 md:aspect-2/1" : "aspect-4/5 md:aspect-3/4"
+        "group relative flex flex-col h-full bg-white/[0.02] border border-white/5 hover:border-orange-500/20 transition-all duration-700 rounded-[2rem] overflow-hidden shadow-2xl",
+         project.className
       )}
     >
-      {/* Spotlight Effect */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2.5rem] transition duration-300 opacity-0 group-hover:opacity-100 z-30"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              rgba(59, 130, 246, 0.1),
-              transparent 80%
-            )
-          `,
-        }}
-      />
-      
-      {/* Border Highlight that follows mouse */}
-       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition duration-500 z-30"
-         style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              400px circle at ${mouseX}px ${mouseY}px,
-              rgba(59, 130, 246, 0.4),
-              transparent 60%
-            )
-          `,
-           maskImage: "linear-gradient(black, black) content-box, linear-gradient(black, black)",
-           maskComposite: "exclude", 
-           WebkitMaskComposite: "xor",
-           padding: "1px",
-        }}
-      />
-
-      <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden">
-        {/* Image Background */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0a0a0a]">
-          <motion.div 
-            className="relative w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-          >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-            />
-          </motion.div>
+      {/* 1. IMAGE CONTAINER - Fixed rounding and edge clipping */}
+      <div className="p-4 md:p-6 pb-0">
+        <div className="relative aspect-[16/9] bg-[#0a0a0a] rounded-t-xl rounded-b-sm overflow-hidden border border-white/5 shadow-inner">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-contain object-top transition-transform duration-1000 ease-in-out group-hover:scale-105 rounded-t-xl"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            priority={index < 6}
+            quality={100}
+          />
           
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-[#020205] via-[#020205]/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-60 z-10" />
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#020205]/90 z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-        </div>
+          {/* Subtle Browser-like Bar */}
+          <div className="absolute top-0 left-0 right-0 h-6 bg-white/10 backdrop-blur-md flex items-center px-3 gap-1.5 z-20 border-b border-white/5">
+             <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+             <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+             <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+          </div>
 
-        {/* Content Layer */}
-        <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-20 flex flex-col justify-end h-full pointer-events-none">
-          {/* Hover Lift Content */}
-          <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-4">
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-              {project.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wider bg-white/5 text-white/90 backdrop-blur-sm border border-white/10 uppercase">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            
-            <div className="flex items-end justify-between gap-4">
-              <div className="w-full">
-                  <h3 className="text-3xl md:text-4xl font-black text-white mb-2 leading-tight tracking-tight drop-shadow-lg whitespace-nowrap">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-300 text-sm md:text-base max-w-lg line-clamp-2 font-medium">
-                    {project.description}
-                  </p>
-              </div>
-              
-              {/* Action Button */}
-              <div className="hidden md:flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-black transition-all duration-500 scale-50 opacity-0 -rotate-45 group-hover:scale-100 group-hover:opacity-100 group-hover:rotate-0">
-                <ArrowUpRight className="h-6 w-6" />
-              </div>
-            </div>
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-[#020202]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[1px] z-10 flex items-center justify-center p-6">
+             <Link href={project.link} className="w-14 h-14 rounded-full bg-orange-600 flex items-center justify-center text-white transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-[0_0_30px_rgba(234,88,12,0.5)]">
+                <ExternalLinkIcon className="w-6 h-6" />
+             </Link>
           </div>
         </div>
       </div>
-      
-      {/* Clickable Overlay */}
-      <Link 
-        href={project.link} 
-        target={project.link?.startsWith("http") ? "_blank" : undefined}
-        className="absolute inset-0 z-40 focus:outline-none"
-      >
+
+      {/* 2. CONTENT AREA */}
+      <div className="flex flex-col flex-1 p-8 pt-8">
+        <div className="flex items-center justify-between mb-4">
+           <div className="flex items-center gap-3">
+              <Sparkles className="w-4 h-4 text-orange-400" />
+              <span className="text-orange-400 font-bold text-[10px] tracking-[0.2em] uppercase">{project.category}</span>
+           </div>
+           <div className="flex gap-2">
+              {project.tags.slice(0, 2).map((tag) => (
+                <span key={tag} className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{tag}</span>
+              ))}
+           </div>
+        </div>
+
+        <h3 className="text-3xl font-medium text-white mb-4 font-[Sentient] group-hover:text-orange-400 transition-colors duration-500">
+           {project.title}
+        </h3>
+        
+        <p className="text-slate-400 text-lg line-clamp-2 font-light leading-relaxed mb-8">
+           {project.description}
+        </p>
+
+        <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+           <Link href={project.link} className="inline-flex items-center gap-3 text-xs font-bold tracking-[0.2em] uppercase text-white hover:text-orange-400 transition-all duration-300">
+              Launch Site <ArrowUpRight className="w-4 h-4" />
+           </Link>
+           <div className="flex items-center gap-2 text-slate-600">
+              <Globe className="w-4 h-4" />
+              <span className="text-[10px] font-mono tracking-tighter">Live Deployment</span>
+           </div>
+        </div>
+      </div>
+
+      <Link href={project.link} className="absolute inset-0 z-30 focus:outline-none md:hidden">
         <span className="sr-only">View project {project.title}</span>
       </Link>
     </motion.div>
+  );
+}
+
+function ExternalLinkIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      className={className} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
   );
 }

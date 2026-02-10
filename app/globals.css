@@ -19,9 +19,9 @@
 :root {
   --background: #020205;
   --foreground: #f8fafc;
-  --primary: #3b82f6;
+  --primary: #ea580c;
   --primary-foreground: #ffffff;
-  --border: #1e293b;
+  --border: #27272a;
 }
 
 ::selection {
@@ -38,7 +38,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: var(--primary);
   border-radius: 5px;
 }
 

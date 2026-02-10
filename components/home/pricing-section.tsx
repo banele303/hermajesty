@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Sparkles, Zap, Rocket } from "lucide-react";
+import { Check, Sparkles, Zap, Rocket, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 const pricingPlans = [
   {
@@ -14,9 +13,8 @@ const pricingPlans = [
     originalPrice: "5,999",
     currency: "R",
     badge: "🔥 Limited Offer",
-    badgeColor: "from-orange-500 to-red-600",
-    gradient: "from-orange-500/20 to-red-600/20",
-    borderGradient: "from-orange-500 via-red-500 to-pink-600",
+    gradient: "from-orange-500/20 to-amber-600/20",
+    borderGradient: "from-orange-500 via-amber-500 to-orange-400",
     features: [
       "Up to 40 products/pages",
       "Fully responsive design",
@@ -35,13 +33,12 @@ const pricingPlans = [
     price: "8,999",
     currency: "R",
     badge: "⚡ Most Popular",
-    badgeColor: "from-blue-500 to-indigo-600",
-    gradient: "from-blue-500/20 to-indigo-600/20",
-    borderGradient: "from-blue-500 via-indigo-500 to-purple-600",
+    gradient: "from-orange-600/20 to-orange-400/20",
+    borderGradient: "from-orange-600 via-orange-500 to-orange-300",
     popular: true,
     features: [
       "50+ products/pages",
-      "Advanced features & integrations",
+      "Advanced AI integrations",
       "Custom API development",
       "Advanced analytics dashboard",
       "Multi-user management",
@@ -57,18 +54,17 @@ const pricingPlans = [
     price: "14,999",
     currency: "R",
     badge: "💎 Best Value",
-    badgeColor: "from-purple-500 to-pink-600",
-    gradient: "from-purple-500/20 to-pink-600/20",
-    borderGradient: "from-purple-500 via-pink-500 to-rose-600",
+    gradient: "from-amber-500/20 to-orange-600/20",
+    borderGradient: "from-amber-600 via-orange-500 to-amber-400",
     savings: "Save R8,000+",
     features: [
-      "Full responsive website",
+      "Full responsive ecosystem",
       "iOS & Android mobile app",
-      "Synchronized data across platforms",
-      "Push notifications",
+      "Synchronized AI data layers",
+      "Push notification systems",
       "App store deployment",
-      "Comprehensive testing",
-      "12 months support",
+      "Comprehensive QA testing",
+      "12 months elite support",
     ],
     cta: "Build Empire",
   },
@@ -76,15 +72,12 @@ const pricingPlans = [
 
 export function PricingSection() {
   return (
-    <section className="relative py-24 lg:py-32 bg-gradient-to-b from-[#020205] via-slate-950 to-[#020205] overflow-hidden">
+    <section className="relative py-24 lg:py-40 bg-[#020202] overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-orange-500/5 blur-[180px] rounded-full opacity-40" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay" />
       </div>
-
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
@@ -92,22 +85,22 @@ export function PricingSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24 lg:mb-32"
         >
-          <Badge variant="outline" className="mb-6 border-blue-500/50 text-blue-400 px-4 py-1 text-sm tracking-wider uppercase">
-            Pricing
-          </Badge>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[0.9] mb-6">
-            Ship <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600">Faster.</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 backdrop-blur-md mb-8">
+             <span className="text-[10px] font-bold text-orange-400 tracking-[0.3em] uppercase italic">Investment Structure</span>
+          </div>
+          <h2 className="text-6xl md:text-8xl font-medium text-white tracking-tighter leading-[0.9] mb-8 font-[Sentient]">
+            Ship <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-200 to-orange-400 bg-[length:200%_auto] animate-gradient-x">Faster.</span>
           </h2>
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            One-time investment. No subscriptions. Own your digital assets forever.
+          <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+            One-time investment. No subscriptions. Own your elite digital assets forever.
           </p>
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
           {pricingPlans.map((plan, idx) => (
             <PricingCard key={plan.name} plan={plan} index={idx} />
           ))}
@@ -118,14 +111,25 @@ export function PricingSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-24 text-center"
         >
-          <p className="text-slate-500 text-sm">
-            🇿🇦 Trusted by South African businesses • 🔒 Secure payments • ⚡ Fast delivery
+          <p className="text-slate-500 text-sm font-medium tracking-widest uppercase">
+            🇿🇦 South Africa's Trusted Engineering Partner • 🔒 Secure Protocol • ⚡ High-Yield Delivery
           </p>
         </motion.div>
       </div>
+
+      <style jsx>{`
+        @keyframes gradient-x {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+      `}</style>
     </section>
   );
 }
@@ -138,97 +142,65 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      className={`relative group ${plan.popular ? "md:scale-105 md:-mt-4" : ""}`}
+      transition={{ duration: 0.8, delay: index * 0.15 }}
+      className={`relative group ${plan.popular ? "md:scale-105" : ""}`}
     >
-      {/* Holographic Border Effect */}
+      {/* Background Glow */}
       <div 
-        className={`absolute -inset-0.5 bg-gradient-to-r ${plan.borderGradient} opacity-75 rounded-3xl blur transition-opacity duration-300 group-hover:opacity-100`}
-        style={{ backgroundSize: "200% 200%", animation: "gradient 3s ease infinite" }} 
+        className={`absolute -inset-[1px] bg-gradient-to-r ${plan.borderGradient} opacity-30 rounded-[3rem] blur-sm transition-opacity duration-700 group-hover:opacity-100`}
       />
 
-      {/* Card */}
-      <div className="relative h-full rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-white/10 overflow-hidden">
+      {/* Card Body */}
+      <div className="relative h-full rounded-[3rem] bg-[#050505] border border-white/5 overflow-hidden flex flex-col p-10 py-12">
         {/* Badge */}
         {plan.badge && (
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className={`px-4 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${plan.badgeColor} shadow-lg`}>
+          <div className="absolute top-6 right-8">
+            <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-white bg-white/5 border border-white/10 backdrop-blur-xl group-hover:bg-orange-600 transition-all duration-500`}>
               {plan.badge}
             </div>
           </div>
         )}
 
-        {/* Gradient Overlay */}
-        <div className={`absolute top-0 left-0 w-full h-48 bg-gradient-to-br ${plan.gradient} opacity-50`} />
-
         {/* Content */}
-        <div className="relative p-8 pt-12">
-          {/* Icon */}
-          <div className="mb-6 flex justify-center">
-            <div className={`p-4 rounded-2xl bg-gradient-to-br ${plan.gradient} border border-white/10 shadow-lg`}>
-              <Icon className="w-8 h-8 text-white" />
-            </div>
-          </div>
-
-          {/* Plan Name */}
-          <h3 className="text-2xl font-bold text-white mb-2 text-center">{plan.name}</h3>
-          <p className="text-slate-400 text-sm mb-6 text-center">{plan.tagline}</p>
-
-          {/* Price */}
-          <div className="mb-8 text-center">
-            {plan.originalPrice && (
-              <div className="text-slate-600 line-through text-lg mb-1">
-                {plan.currency}{plan.originalPrice}
+        <div className="mb-12">
+           <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 rounded-2xl bg-orange-500/10 text-orange-500 border border-orange-500/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                <Icon className="w-6 h-6" />
               </div>
-            )}
-            <div className="flex items-baseline justify-center gap-1">
-              <span className="text-4xl font-black text-white">{plan.currency}</span>
-              <span className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
-                {plan.price}
-              </span>
-            </div>
-            <div className="text-slate-500 text-sm mt-2">One-time payment</div>
-            {plan.savings && (
-              <div className="text-green-400 text-sm font-semibold mt-1">{plan.savings}</div>
-            )}
-          </div>
+              <div>
+                <h3 className="text-2xl font-medium text-white font-[Sentient]">{plan.name}</h3>
+                <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">{plan.tagline}</p>
+              </div>
+           </div>
 
-          {/* Features */}
-          <ul className="space-y-4 mb-8">
-            {plan.features.map((feature, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
-                className="flex items-start gap-3"
-              >
-                <div className={`mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${plan.gradient} flex items-center justify-center`}>
-                  <Check className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-slate-300 text-sm leading-relaxed">{feature}</span>
-              </motion.li>
-            ))}
-          </ul>
-
-          {/* CTA Button */}
-          <Button
-            className={`w-full bg-gradient-to-r ${plan.badgeColor} hover:shadow-lg hover:shadow-blue-500/20 text-white border-none font-bold py-6 text-base transition-all duration-300 group-hover:scale-105`}
-          >
-            {plan.cta}
-          </Button>
+           {/* Price */}
+           <div className="flex items-baseline gap-2 mb-2">
+              <span className="text-2xl font-bold text-orange-500">{plan.currency}</span>
+              <span className="text-6xl font-medium text-white tracking-tighter font-[Sentient]">{plan.price}</span>
+           </div>
+           <p className="text-slate-500 text-sm font-medium italic">Fixed one-time investment</p>
+           {plan.savings && (
+              <p className="text-orange-400 text-sm font-bold mt-2 tracking-wide">{plan.savings}</p>
+           )}
         </div>
-      </div>
 
-      {/* Animated Gradient Border */}
-      <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
+        {/* Features List */}
+        <ul className="space-y-5 mb-12 flex-1">
+          {plan.features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-4">
+               <div className="mt-1 flex-shrink-0 w-2 h-2 rounded-full bg-orange-500/40 shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
+               <span className="text-slate-400 text-sm leading-relaxed font-light">{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <Button
+          className={`w-full h-16 rounded-2xl ${plan.popular ? 'bg-orange-600 text-white hover:bg-white hover:text-black shadow-[0_0_30px_rgba(234,88,12,0.3)]' : 'bg-white/5 text-white hover:bg-orange-600'} transition-all duration-500 font-bold text-lg group-hover:scale-[1.02] border-none`}
+        >
+          {plan.cta} <MoveRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </div>
     </motion.div>
   );
 }

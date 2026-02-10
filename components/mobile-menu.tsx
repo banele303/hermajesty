@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MoveRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -14,10 +14,11 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { name: "About", href: "#about" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Insights", href: "#insights" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Portfolio", href: "/#portfolio" },
+    { name: "AI Services", href: "/ai-services" },
+    { name: "Insights", href: "/#insights" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   const handleLinkClick = () => {
@@ -25,11 +26,11 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
   };
 
   return (
-    <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <button
           className={cn(
-            "group lg:hidden p-2 text-foreground transition-colors",
+            "group p-3 text-white transition-all hover:bg-white/5 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md relative z-50",
             className
           )}
           aria-label="Open menu"
@@ -40,43 +41,44 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <div
-          data-overlay="true"
-          className="fixed z-30 inset-0 bg-black/50 backdrop-blur-sm"
+        <Dialog.Overlay
+          className="fixed z-[60] inset-0 bg-[#020202]/95 backdrop-blur-2xl animate-in fade-in duration-500"
         />
 
         <Dialog.Content
-          onInteractOutside={(e) => {
-            if (
-              e.target instanceof HTMLElement &&
-              e.target.dataset.overlay !== "true"
-            ) {
-              e.preventDefault();
-            }
-          }}
-          className="fixed top-0 left-0 w-full z-40 py-28 md:py-40"
+          className="fixed inset-0 z-[70] flex flex-col justify-center animate-in slide-in-from-bottom-10 duration-700"
         >
+          <div className="absolute top-8 right-6">
+             <Dialog.Close asChild>
+                <button className="p-4 text-white hover:text-orange-500 transition-colors">
+                   <X size={32} />
+                </button>
+             </Dialog.Close>
+          </div>
+
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
 
-          <nav className="flex flex-col space-y-6 container mx-auto">
-            {menuItems.map((item) => (
+          <nav className="flex flex-col items-center space-y-10 container mx-auto px-4">
+            {menuItems.map((item, i) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={handleLinkClick}
-                className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
+                className="text-4xl md:text-5xl font-medium text-white/40 transition-all duration-500 hover:text-white font-[Sentient] tracking-tight hover:translate-x-4 flex items-center gap-4 group"
+                style={{ transitionDelay: `${i * 100}ms` }}
               >
                 {item.name}
+                <MoveRight className="opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0 w-8 h-8 text-orange-500" />
               </Link>
             ))}
 
-            <div className="mt-6">
+            <div className="pt-12">
               <Link
-                href="/#sign-in"
+                href="/schedule-a-meeting"
                 onClick={handleLinkClick}
-                className="inline-block text-xl font-mono uppercase text-primary transition-colors ease-out duration-150 hover:text-primary/80 py-2"
+                className="inline-flex items-center gap-4 bg-orange-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-orange-500 transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(234,88,12,0.3)]"
               >
-                Sign In
+                Schedule Session <MoveRight size={24} />
               </Link>
             </div>
           </nav>
